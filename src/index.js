@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import { FirebaseAppProvider } from 'reactfire';
+import firebaseConfig from './utils/firebaseConfig'
+
+import Login from './pages/login';
+import Register from './pages/register';
+
+const routing = (
+  <Router>
+    <Switch>
+      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </FirebaseAppProvider>
+    </Switch>
+  </Router>
+)
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
